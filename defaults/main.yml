@@ -1,2 +1,3 @@
 ---
-# defaults file for ansible_role_timezone
+# The timezone to use
+timezone: 'Europe/London'
