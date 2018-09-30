@@ -1,2 +1,16 @@
 ---
-# tasks file for ansible_role_timezone
+- name: install tzdata
+  become: yes
+  package:
+    name: tzdata
+    state: present
+
+- name: configure timezone
+  become: yes
+  copy:
+    content: "{{ timezone }}\n"
+    dest: '/etc/timezone'
+    owner: root
+    group: root
+    mode: 'u=rw,go=r'
+  notify: timezone changed
