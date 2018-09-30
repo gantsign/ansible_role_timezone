@@ -1,13 +1,2 @@
 ---
-# Workaround for https://bugs.launchpad.net/ubuntu/+source/tzdata/+bug/1554806
-- name: remove /etc/localtime
-  become: yes
-  file:
-    path: '/etc/localtime'
-    state: absent
-  listen: timezone changed
-
-- name: reconfigure tzdata
-  become: yes
-  command: dpkg-reconfigure --frontend noninteractive tzdata
-  listen: timezone changed
+# handlers file for ansible_role_timezone

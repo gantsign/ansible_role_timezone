@@ -13,4 +13,26 @@
     owner: root
     group: root
     mode: 'u=rw,go=r'
-  notify: timezone changed
+  register: timezone_config
+
+# Workaround for https://bugs.launchpad.net/ubuntu/+source/tzdata/+bug/1554806
+- name: remove /etc/localtime
+  become: yes
+  tags:
+    # [ANSIBLE0016] Tasks that run when changed should likely be handlers
+    # We need to run this immediatly or dpkg-reconfigure will overwrite
+    # /etc/timezone if run.
+    - skip_ansible_lint
+  file:
+    path: '/etc/localtime'
+    state: absent
+  when: timezone_config.changed
+
+- name: reconfigure tzdata
+  become: yes
+  tags:
+    # [ANSIBLE0016] Tasks that run when changed should likely be handlers
+    # Recreate /etc/localtime before other tasks are run
+    - skip_ansible_lint
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: timezone_config.changed
