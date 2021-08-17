@@ -1,7 +1,7 @@
 Ansible Role: timezone
 ======================
 
-[![Build Status](https://travis-ci.com/gantsign/ansible_role_timezone.svg?branch=master)](https://travis-ci.com/gantsign/ansible_role_timezone)
+[![Tests](https://github.com/gantsign/ansible_role_timezone/workflows/Tests/badge.svg)](https://github.com/gantsign/ansible_role_timezone/actions?query=workflow%3ATests)
 [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-gantsign.timezone-blue.svg)](https://galaxy.ansible.com/gantsign/timezone)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gantsign/ansible_role_timezone/master/LICENSE)
 
